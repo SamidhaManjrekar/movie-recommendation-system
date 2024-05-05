@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Popularity Recommendations</title>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <style>
+        body {
+            background-color: black;
+            color: white;
+            padding-top: 100px;
+        }
+        .navbar {
+            background-color: rgba(0, 0, 0, 0.8);
+            border: none;
+            border-radius: 0;
+            z-index: 999;
+            height: 120px;
+        }
+        .navbar-brand {
+            font-size: 42px;
+            color: white !important;
+            padding: 25px 15px;
+        }
+        .navbar-nav>li>a {
+            font-size: 24px;
+            color: white !important;
+            padding: 25px 15px;
+        }
+        .container {
+            margin-top: 20px;
+        }
+        .card {
+            background-color: #333;
+            color: white;
+            margin-bottom: 20px;
+        }
+        .card-title {
+            font-size: 36px;
+            text-align: center;
+        }
+        .card-img-top {
+            max-width: 100%;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+
+<nav class="navbar navbar-fixed-top">
+    <div class="container-fluid">
+        <ul class="nav navbar-nav">
+            <li><a href="/">Home</a></li>
+            <li><a href="/popularity">Popularity</a></li>
+            <li><a href="/collaborative">Collaborative</a></li>
+            <li><a href="/content-based">Content Based</a></li>
+        </ul>
+    </div>
+</nav>
+
+<div class="container">
+    <h1 class="text-center text-white" style="font-size: 60px;">Recommendation by Popularity</h1>
+    <div class="row">
+        {% for movie in popular_movies %}
+        <div class="col-md-3">
+            <div class="card">
+                <img class="card-img-top" src="{{ get_movie_poster(movie) }}" alt="Movie Poster">
+                <div class="card-body">
+                    <h4 class="card-title">{{ movie }}</h4>
+                </div>
+            </div>
+        </div>
+        {% if loop.index % 4 == 0 %}
+    </div>
+    <div class="row">
+        {% endif %}
+        {% endfor %}
+    </div>
+</div>
+
+</body>
+</html>
